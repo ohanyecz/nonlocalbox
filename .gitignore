@@ -4,3 +4,4 @@ __pycache__/
 dist/
 playground.py
 .pytest_cache/
+docs/build
