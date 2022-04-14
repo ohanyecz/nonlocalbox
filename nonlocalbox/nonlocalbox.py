@@ -84,10 +84,10 @@ class NonlocalBox:
             If aliceUser and bobUser is the same in the box with box ID *box_id*
             this boolean will tell the server that the user wants to be in the role Bob.
         """
+        self.box_id = box_id
         box = next((i for i in self.list_boxes() if i["id"] == str(box_id)), None)
         if box is None:
             self.role = "Bob"
-            self.box_id = box_id
         elif box["aliceUser"] == box["bobUser"]:
             self.role = "Bob" if i_want_to_be_bob else "Alice"
         else:
