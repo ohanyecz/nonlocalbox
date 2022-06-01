@@ -1,7 +1,21 @@
+# Packaging
+dist/
+*.egg
+*.egg-info/
+wheels/
+
+# Tests
+.pytest_cache/
+
+# Sphinx
+docs/build/
+
+# Jupyter notebooks
+.ipynb_checkpoints
+
+# Others
+.idea/
 *venv/
 __pycache__/
-.idea/
-dist/
 playground.py
-.pytest_cache/
-docs/build
+TODO.txt
