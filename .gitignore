@@ -15,7 +15,7 @@ docs/build/
 
 # Others
 .idea/
-*venv/
+venv*/
 __pycache__/
-playground.py
+playground*.py
 TODO.txt
