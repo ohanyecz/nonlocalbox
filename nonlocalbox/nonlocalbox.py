@@ -65,8 +65,7 @@ class NonlocalBox:
                     "boxType": box_type_id,
                     "boxName": box_name,
                 })
-        if r.json()["status"] != 0:
-            raise StatusError(f"Nonzero status returned: {r.json()['status']}")
+        _check_status(r)
         self.box_id = r.json()["boxID"]
         self.box_type_id = box_type_id
         return self.box_id
@@ -124,10 +123,7 @@ class NonlocalBox:
                     "transactionID": transaction_id,
                     "x" if self.role == "Alice" else "y": input,
                 })
-        if r.status_code != 200:
-            raise ServiceError(f"Received an invalid status code: {r.status_code}")
-        if r.json()["status"] != 0:
-            raise StatusError(f"Nonzero status returned: {r.json()['status']}")
+        _check_status(r)
         return r.json()["a"] if self.role == "Alice" else r.json()["b"]
 
     def list_box_types(self):
@@ -146,8 +142,7 @@ class NonlocalBox:
         """
         r = get(API_URL + "/listBoxTypes",
                 params={"apiKey": self.api_key})
-        if r.json()["status"] != 0:
-            raise StatusError(f"Nonzero status returned: {r.json()['status']}")
+        _check_status(r)
         return r.json()["boxTypes"]
 
     def list_boxes(self):
@@ -166,8 +161,7 @@ class NonlocalBox:
         """
         r = get(API_URL + "/listBoxes",
                 params={"apiKey": self.api_key})
-        if r.json()["status"] != 0:
-            raise StatusError(f"Nonzero status returned: {r.json()['status']}")
+        _check_status(r)
         return r.json()["boxes"]
 
     def box_type_info(self):
@@ -189,6 +183,12 @@ class NonlocalBox:
                     "apiKey": self.api_key,
                     "boxTypeID": self.box_type_id,
                 })
-        if r.json()["status"] != 0:
-            raise StatusError(f"Nonzero status returned: {r.json()['status']}")
+        _check_status(r)
         return r.json()["boxTypes"]
+
+
+def _check_status(resp):
+    if resp.status_code != 200:
+        raise ServiceError(f"Received an invalid status code from the server: {resp.status_code}.")
+    if resp.json()["status"] != 0:
+        raise StatusError(f"Nonzero status returned: {resp.json()['status']}")
