@@ -2,7 +2,7 @@
 name = "NonlocalBox"
 version = "0.1"
 description = "A friendly API for simulating nonlocal no-signalling correlations"
-license = "MIT"
+license = "GNU GPLv3"
 authors = ["Ottó Hanyecz", "Mátyás Koniorczyk", "Péter Naszvadi"]
 readme = "README.rst"
 homepage = "none"
@@ -17,17 +17,11 @@ classifiers = [
 ]
 include = ["CHANGES.rst"]
 
-[tool.poetry.urls]
-"Documentation" = "none"
-"Bug Tracker" = "none"
-
 [tool.poetry.dependencies]
-nonlocalbox = ">=0.1"
 python = ">=3.8"
 requests = ">=2.27.1"
 
 [tool.poetry.dev-dependencies]
-jupyter = ">=1.0.0"
 numpydoc = ">=1.1.0"
 pytest = ">=6.1.2"
 Sphinx = ">=4.4.0"
