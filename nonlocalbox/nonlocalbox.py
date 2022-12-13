@@ -62,7 +62,7 @@ class NonlocalBox:
                 params={
                     "apiKey": self.api_key,
                     "inviteUserName": partner,
-                    "boxType": box_type_id,
+                    "boxTypeID": box_type_id,
                     "boxName": box_name,
                 })
         _check_status(r)
